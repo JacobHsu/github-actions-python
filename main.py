@@ -19,10 +19,12 @@ close_price = int(data["Close"][0])
 # 使用os.environ获取Github仓库的secrets
 api_token = os.environ.get('TELEGRAM_BOT_TOKEN')
 chat_id = os.environ.get('CHAT_ID')
+tg_api_token = os.environ.get('TELEGRAM_API_TOKEN')
 
 # 打印当日收盘价
 print("当日收盘价：", close_price)
 print("dotenv CHAT_ID：", chat_id)
+print("yml API_TOKEN", tg_api_token)
 
 # 發電報函數
 def send_to_telegram(message):
