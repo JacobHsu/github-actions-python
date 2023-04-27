@@ -2,10 +2,6 @@ import yfinance as yf
 import datetime as dt
 import requests
 import os
-from dotenv import load_dotenv
-
-# 加载.env文件中的环境变量
-load_dotenv()
 
 # 获取台湾大盘指数的数据
 twii = yf.Ticker("^TWII")
@@ -17,19 +13,19 @@ data = twii.history(period="1d")
 close_price = int(data["Close"][0])
 
 # 使用os.environ获取Github仓库的secrets
-api_token = os.environ.get('TELEGRAM_BOT_TOKEN')
-chat_id = os.environ.get('CHAT_ID')
 tg_api_token = os.environ.get('TELEGRAM_API_TOKEN')
+tg_chat_id = os.environ.get('CHAT_ID')
+
 
 # 打印当日收盘价
 print("当日收盘价：", close_price)
-print("dotenv CHAT_ID：", chat_id)
+print("dotenv CHAT_ID：", tg_chat_id)
 print("yml API_TOKEN", tg_api_token)
 
 # 發電報函數
 def send_to_telegram(message):
-    apiToken = api_token
-    chatID = chat_id
+    apiToken = tg_api_token
+    chatID = tg_chat_id
     apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
     try:
         response = requests.post(apiURL, json={'chat_id': chatID, 'text': message})
