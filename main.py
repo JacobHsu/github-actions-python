@@ -1,8 +1,8 @@
 import yfinance as yf
 import datetime as dt
 import requests
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 # 加载.env文件中的环境变量
 load_dotenv()
@@ -18,6 +18,7 @@ close_price = int(data["Close"][0])
 
 # 打印当日收盘价
 print("当日收盘价：", close_price)
+print("dotenv CHAT_ID：", os.getenv('CHAT_ID'))
 
 # 發電報函數
 def send_to_telegram(message):
