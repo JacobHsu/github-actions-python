@@ -16,14 +16,18 @@ data = twii.history(period="1d")
 # 获取当日收盘价，并将其转换为整数
 close_price = int(data["Close"][0])
 
+# 使用os.environ获取Github仓库的secrets
+api_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+chat_id = os.environ.get('CHAT_ID')
+
 # 打印当日收盘价
 print("当日收盘价：", close_price)
-print("dotenv CHAT_ID：", os.getenv('CHAT_ID'))
+print("dotenv CHAT_ID：", chat_id)
 
 # 發電報函數
 def send_to_telegram(message):
-    apiToken = os.getenv('TELEGRAM_BOT_TOKEN')
-    chatID = os.getenv('CHAT_ID')
+    apiToken = api_token
+    chatID = chat_id
     apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
     try:
         response = requests.post(apiURL, json={'chat_id': chatID, 'text': message})
