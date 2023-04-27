@@ -7,10 +7,6 @@ import os
 # 加载.env文件中的环境变量
 load_dotenv()
 
-# 从环境变量中读取Telegram bot token
-apiToken = os.getenv('TELEGRAM_BOT_TOKEN')
-chatID = os.getenv('CHAT_ID')
-
 # 获取台湾大盘指数的数据
 twii = yf.Ticker("^TWII")
 
@@ -25,8 +21,8 @@ print("当日收盘价：", close_price)
 
 # 發電報函數
 def send_to_telegram(message):
-    apiToken = apiToken
-    chatID = chatID
+    apiToken = os.getenv('TELEGRAM_BOT_TOKEN')
+    chatID = os.getenv('CHAT_ID')
     apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
     try:
         response = requests.post(apiURL, json={'chat_id': chatID, 'text': message})
