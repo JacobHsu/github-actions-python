@@ -4,12 +4,13 @@
 name: Python application
 
 on:
+  schedule:
+    - cron: '30 09 * * *' # 17:30 UTC  Taipei Time = UTC + 8:00
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  schedule:
-    - cron: '0 17 * * *' # 每天下午 5 點執行
+
 
 permissions:
   contents: read
