@@ -2,8 +2,6 @@ import yfinance as yf
 import datetime as dt
 import requests
 import os
-import schedule
-import time
 
 def main():
     # 获取台湾大盘指数的数据
@@ -20,7 +18,7 @@ def main():
     tg_chat_id = os.environ.get('CHAT_ID')
 
     # 打印当日收盘价
-    print("当日收盘价：", close_price)
+    print("當日收盤價：", close_price)
 
     # 發電報函數
     def send_to_telegram(message):
@@ -38,9 +36,4 @@ def main():
     message = f"日期:{current_time} 當日收盤價:{close_price}"
     send_to_telegram(message)
 
-schedule.every().day.at('17:00').do(main)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-
+main()
