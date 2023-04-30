@@ -46,7 +46,7 @@ def main():
 
     # 發送消息至telegram
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 強力買入:{close_prcodes_and_pricesice}"
+    message = f"日期:{current_time} 強力買入:{codes_and_prices}"
     send_to_telegram(message)
 
 main()
