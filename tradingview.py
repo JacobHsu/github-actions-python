@@ -47,9 +47,9 @@ def main():
 
     # 發送消息至telegram
     # 轉換資料為表格
-    table = tabulate.tabulate(codes_and_prices, headers=['Code', 'Price'], tablefmt='simple')
+    table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 強力買入:</b><br>{table}"
+    message = f"日期:{current_time} 強力買入:{table}"
     send_to_telegram(message)
 
 main()
