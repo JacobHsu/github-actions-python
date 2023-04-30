@@ -40,17 +40,18 @@ def main():
         chatID = os.environ.get('CHAT_ID')
         apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
         try:
-            response = requests.post(apiURL, data={'chat_id': chatID, 'text': message, 'parse_mode': 'HTML'})
+            response = requests.post(apiURL, data={'chat_id': chatID, 'text': message, 'parse_mode': 'Markdown'})
             print(response.text)
         except Exception as e:
             print(e)
 
     # 發送消息至telegram
     link = '<a href="https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing">超連結</a>'
+    table_link = 'https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing'
     # 轉換資料為表格
     table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 強力買入({link}):\n{table}"
+    message = f"日期:{current_time} [強力買入]({table_link})({link}):\n{table}"
     send_to_telegram(message)
 
 main()
