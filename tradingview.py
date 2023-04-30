@@ -40,7 +40,7 @@ def main():
         chatID = os.environ.get('CHAT_ID')
         apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
         try:
-            response = requests.post(apiURL, json={'chat_id': chatID, 'text': message})
+            response = requests.post(apiURL, json={'chat_id': chatID, 'text': message}, parse_mode='HTML')
             print(response.text)
         except Exception as e:
             print(e)
@@ -51,6 +51,6 @@ def main():
     table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
     message = f"日期:{current_time} 強力買入({link}):\n{table}"
-    send_to_telegram(message, parse_mode='HTML')
+    send_to_telegram(message)
 
 main()
