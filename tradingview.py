@@ -46,10 +46,11 @@ def main():
             print(e)
 
     # 發送消息至telegram
+    table_link = 'https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing'
     # 轉換資料為表格
     table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 強力買入:\n{table}"
-    send_to_telegram(message)
+    message = f"日期:{current_time} [強力買入]({table_link}):\n{table}"
+    send_to_telegram(message, parse_mode='Markdown')
 
 main()
