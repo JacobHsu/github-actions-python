@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime as dt
 import os
+import tabulate
 
 def main():
     url = 'https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing/'
@@ -45,8 +46,10 @@ def main():
             print(e)
 
     # 發送消息至telegram
+    # 轉換資料為表格
+    table = tabulate.tabulate(codes_and_prices, headers=['Code', 'Price'], tablefmt='html')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 強力買入:{codes_and_prices}"
+    message = f"日期:{current_time} 強力買入:</b><br>{table}"
     send_to_telegram(message)
 
 main()
