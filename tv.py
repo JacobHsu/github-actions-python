@@ -22,7 +22,7 @@ def main():
         # Check if the row has cells
         if len(cells) > 0:
             # Extract the data from the cells
-            code = cells[0].text.strip()[1:]
+            code = find_last_uppercase( cells[0].text.strip() )
             price = cells[2].text.strip()
             rating = cells[5].text.strip()
             # Check if the rating is "強力買入"
@@ -32,6 +32,12 @@ def main():
     # Print the list of codes and prices
     print(codes_and_prices)
 
+    def find_last_uppercase(word):
+        first_word = re.search(r'\w+', word).group()
+        uppercase_positions = [m.end() - 1 for m in re.finditer(r'[A-Z]', first_word)]
+        idx = max(uppercase_positions)
+        word = word[:idx] + '|' + word[idx:]
+        return word
 
     # 發電報函數
     def send_to_telegram(message):
