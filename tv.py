@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import datetime as dt
 import os
 import tabulate
+import re
 
 def main():
     url = 'https://tw.tradingview.com/markets/stocks-usa/market-movers-highest-revenue/'
