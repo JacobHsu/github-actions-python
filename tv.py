@@ -16,6 +16,13 @@ def main():
     # Create an empty list to store the codes and prices
     codes_and_prices = []
 
+    def find_last_uppercase(word):
+        first_word = re.search(r'\w+', word).group()
+        uppercase_positions = [m.end() - 1 for m in re.finditer(r'[A-Z]', first_word)]
+        idx = max(uppercase_positions)
+        word = word[:idx] + '|' + word[idx:]
+        return word
+
     # Loop through each row and extract the data
     for row in table_rows:
         # Find the cells in the row
@@ -32,13 +39,6 @@ def main():
 
     # Print the list of codes and prices
     print(codes_and_prices)
-
-    def find_last_uppercase(word):
-        first_word = re.search(r'\w+', word).group()
-        uppercase_positions = [m.end() - 1 for m in re.finditer(r'[A-Z]', first_word)]
-        idx = max(uppercase_positions)
-        word = word[:idx] + '|' + word[idx:]
-        return word
 
     # 發電報函數
     def send_to_telegram(message):
