@@ -17,8 +17,14 @@ def main():
     tg_api_token = os.environ.get('TELEGRAM_API_TOKEN')
     tg_chat_id = os.environ.get('CHAT_ID')
 
-    # 打印当日收盘价
     print("當日收盤價：", close_price)
+
+    # 取得USD/TWD匯率
+    ticker = yf.Ticker('TWD=X')
+    data = ticker.history(period='1d')
+    exchange_rate = round(data['Close'][0], 2)
+
+    print('美元對台幣匯率：', exchange_rate)
 
     # 發電報函數
     def send_to_telegram(message):
@@ -33,7 +39,7 @@ def main():
 
     # 發送消息至telegram
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} 當日收盤價:{close_price}"
+    message = f"日期:{current_time} '美元對台幣匯率:{exchange_rate}\n當日收盤價:{close_price}"
     send_to_telegram(message)
 
 main()
