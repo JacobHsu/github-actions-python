@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import datetime as dt
 import os
 import tabulate
+import re
 
 def main():
     url = 'https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing/'
@@ -14,6 +15,7 @@ def main():
 
     # Create an empty list to store the codes and prices
     codes_and_prices = []
+    my_remove_list = [5381]
 
     # Loop through each row and extract the data
     for row in table_rows:
@@ -27,7 +29,8 @@ def main():
             rating = cells[5].text.strip()
             # Check if the rating is "強力買入"
             if rating == "強力買入":
-                codes_and_prices.append((code, price))
+                stock = int(re.search(r'\d+', code).group())
+                codes_and_prices.append((code, price))  if stock not in my_remove_list else None
 
     # Print the list of codes and prices
     print(codes_and_prices)

@@ -39,7 +39,7 @@ def main():
 
     # 發送消息至telegram
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} '美元對台幣匯率:{exchange_rate}\n當日收盤價:{close_price}"
+    message = f"日期:{current_time} \n美元對台幣匯率:{exchange_rate}\n當日收盤價:{close_price}"
     send_to_telegram(message)
 
 main()
