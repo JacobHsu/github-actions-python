@@ -24,9 +24,10 @@ def main():
             # Extract the data from the cells
             code = cells[0].text.strip()[1:]
             price = cells[2].text.strip()
+            fall = cells[4].text.strip()[0]
             rating = cells[5].text.strip()
             # Check if the rating is "強力買入"
-            if rating == "強力買入":
+            if rating == "強力買入" and fall == "−":
                 codes_and_prices.append((code, price))
 
     # Print the list of codes and prices
