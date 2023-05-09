@@ -52,7 +52,7 @@ jobs:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
         CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     - name: Run twstock script
-      run: python twstock.py
+      run: python twstocktg.py
       env:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
         CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
