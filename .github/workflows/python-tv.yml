@@ -40,7 +40,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install yfinance tabulate
+        pip install yfinance tabulate twstock
     - name: Run tradingview stock script
       run: python tv.py
       env:
@@ -48,6 +48,11 @@ jobs:
         CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     - name: Run futures script
       run: python futures.py
+      env:
+        TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
+        CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    - name: Run twstock script
+      run: python twstock.py
       env:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
         CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
