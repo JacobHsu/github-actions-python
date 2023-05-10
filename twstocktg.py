@@ -7,7 +7,7 @@ def main():
     def best_four_point_to_buy(stockid):
         stock = twstock.Stock(stockid)
         bp = twstock.BestFourPoint(stock).best_four_point()
-        if bp:
+        if bp[0]:
             print('買進訊號', stockid)
             print(bp)
             # 發送消息至telegram
