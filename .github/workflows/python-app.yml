@@ -51,3 +51,8 @@ jobs:
       env:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
         CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    - name: Run cnyes script
+      run: python cnyes.py
+      env:
+        TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN  }}
+        CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
