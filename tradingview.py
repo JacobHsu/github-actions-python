@@ -15,7 +15,12 @@ def main():
 
     # Create an empty list to store the codes and prices
     codes_and_prices = []
-    my_remove_list = [5381,6794]
+
+    # my_remove_list = [5381,6794]
+    filename = 'my_remove_list.txt'
+    with open(filename, 'r') as file:
+        my_remove_list = file.read()
+
 
     # Loop through each row and extract the data
     for row in table_rows:
