@@ -14,6 +14,10 @@ def main():
 
     codes_and_prices = []
 
+    filename = 'my_remove_list.txt'
+    with open(filename, 'r') as file:
+        my_remove_list = file.read()
+
     for row in rows:
         cols = row.find_all('td')
         if len(cols) > 0:
@@ -23,7 +27,7 @@ def main():
             avg_price_5_days = cols[3].text.strip()
             if closing_price < avg_price_5_days:
                 print(code, name)
-                codes_and_prices.append((code, name, closing_price))
+                codes_and_prices.append((code, name, closing_price)) if code not in my_remove_list else None
 
         # Print the list of codes and prices
         print(codes_and_prices)
