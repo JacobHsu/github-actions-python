@@ -17,10 +17,10 @@ def send_to_telegram(message):
 
 # 發送消息至telegram
 url = 'https://www.wantgoo.com/futures/wtxp&'
-message = f"({url}):\n"
+message = f"{url}:\n"
 send_to_telegram(message)
 
 
 jihsun = 'http://jsjustweb.jihsun.com.tw/z/ze/zeb/zeb.djhtm'
-message = f"({jihsun}):\n"
+message = f"{jihsun}:\n"
 send_to_telegram(message)
