@@ -30,7 +30,7 @@ def main():
 
     # 發送消息至telegram
     # 上市股票
-    for stockid in ['1440','2002','2014','2614']: 
+    for stockid in ['0050','1440','2002','2614']: 
         best_four_point_to_buy(stockid)
 
 main()
