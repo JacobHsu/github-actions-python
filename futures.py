@@ -16,7 +16,7 @@ def send_to_telegram(message):
 
 
 # 發送消息至telegram
-url = 'https://www.wantgoo.com/futures/wtxp&'
+url = 'https://tw.tradingview.com/symbols/TWSE-0050/technicals/'
 message = f"{url}:\n"
 send_to_telegram(message)
 
