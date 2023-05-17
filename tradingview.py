@@ -35,7 +35,7 @@ def main():
             rating = cells[5].text.strip()
             # Check if the rating is "強力買入"
             if rating == "強力買入" and fall == "−":
-                stock = int(re.search(r'\d+', code).group())
+                stock = re.search(r'\d+', code).group()
                 codes_and_prices.append((code, price))  if stock not in my_remove_list else None
 
     # Print the list of codes and prices
