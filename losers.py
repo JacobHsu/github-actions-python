@@ -16,6 +16,10 @@ def main():
     # Create an empty list to store the codes and prices
     codes_and_prices = []
 
+    filename = 'my_remove_list.txt'
+    with open(filename, 'r') as file:
+        my_remove_list = file.read()
+
     # Loop through each row and extract the data
     for row in table_rows:
         # Find the cells in the row
@@ -28,7 +32,7 @@ def main():
             rating = cells[4].text.strip()
             # Check if the rating is "買入"
             if rating == "買入":
-                codes_and_prices.append((code, price))
+                codes_and_prices.append((code, price)) if stock not in my_remove_list else None
 
     # Print the list of codes and prices
     print(codes_and_prices)
