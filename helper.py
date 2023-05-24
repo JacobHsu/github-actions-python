@@ -1,8 +1,14 @@
 import os
 import requests
+import datetime as dt
+import tabulate
 
 # 發電報函數
-def send_to_telegram(message):
+def send_to_telegram(codes_and_prices):
+    # 發送消息至telegram
+    table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
+    current_time = dt.datetime.now().strftime("%Y-%m-%d")
+    message = f"日期:{current_time} [高股息買入]({url}):\n{table}"
     # 使用os.environ获取Github仓库的secrets
     apiToken = os.environ.get('TELEGRAM_API_TOKEN')
     chatID = os.environ.get('CHAT_ID')

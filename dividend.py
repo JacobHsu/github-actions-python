@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime as dt
-import tabulate
+
 import re
 import helper
 
@@ -37,12 +36,6 @@ def main():
 
     # Print the list of codes and prices
     print(codes_and_prices)
-
-
-    # 發送消息至telegram
-    table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
-    current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} [買入]({url}):\n{table}"
-    helper.send_to_telegram(message)
+    helper.send_to_telegram(codes_and_prices)
 
 main()
