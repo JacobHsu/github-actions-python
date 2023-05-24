@@ -1,4 +1,5 @@
 import os
+import requests
 
 # 發電報函數
 def send_to_telegram(message):
