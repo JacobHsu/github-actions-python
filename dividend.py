@@ -36,6 +36,6 @@ def main():
 
     # Print the list of codes and prices
     print(codes_and_prices)
-    helper.send_to_telegram(codes_and_prices)
+    helper.send_to_telegram(codes_and_prices, url)
 
 main()

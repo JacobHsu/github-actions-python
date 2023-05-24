@@ -4,7 +4,7 @@ import datetime as dt
 import tabulate
 
 # 發電報函數
-def send_to_telegram(codes_and_prices):
+def send_to_telegram(codes_and_prices, url):
     # 發送消息至telegram
     table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
