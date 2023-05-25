@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime as dt
-import os
 import tabulate
 import re
+import helper
 
 def main():
     url = 'https://tw.tradingview.com/markets/stocks-taiwan/market-movers-best-performing/'
@@ -33,26 +33,14 @@ def main():
             price = cells[2].text.strip()
             fall = cells[4].text.strip()[0]
             rating = cells[5].text.strip()
+            ttm = cells[10].text.strip()[0]
             # Check if the rating is "強力買入"
-            if rating == "強力買入" and fall == "−":
+            if rating == "強力買入" and fall == "−" and ttm != "−":
                 stock = re.search(r'\d+', code).group()
                 codes_and_prices.append((code, price))  if stock not in my_remove_list else None
 
     # Print the list of codes and prices
     print(codes_and_prices)
-
-
-    # 發電報函數
-    def send_to_telegram(message):
-        # 使用os.environ获取Github仓库的secrets
-        apiToken = os.environ.get('TELEGRAM_API_TOKEN')
-        chatID = os.environ.get('CHAT_ID')
-        apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
-        try:
-            response = requests.post(apiURL, data={'chat_id': chatID, 'text': message, 'parse_mode': 'Markdown'})
-            print(response.text)
-        except Exception as e:
-            print(e)
 
     if codes_and_prices:
         # 發送消息至telegram
@@ -61,6 +49,6 @@ def main():
         table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
         current_time = dt.datetime.now().strftime("%Y-%m-%d")
         message = f"日期:{current_time} [強力買入]({table_link}):\n{table}"
-        send_to_telegram(message)
+        helper.send_to_telegram(message)
 
 main()
