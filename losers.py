@@ -30,7 +30,7 @@ def main():
             # Extract the data from the cells
             code = cells[0].text.strip()[1:] 
             price = cells[2].text.strip()
-            rating = cells[10].text.strip()
+            rating = cells[11].text.strip() 
             # Check if the rating is "買入"
             if rating == "買入":
                 stock = re.search(r'\d+', code).group()
