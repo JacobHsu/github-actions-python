@@ -17,8 +17,10 @@ for row in table_rows:
 
     if len(cells) > 0:
         # Extract the data from the cells
-        # print(cells[11].text)
-        code = cells[0].text.strip()[1:]
+        if cells[0].text[:5].isdigit():
+          code = cells[0].text.strip()[1:]
+        else:
+          code = cells[0].text.strip()   
         price = cells[2].text.strip()
         rating = cells[11].text.strip() # 分析師評級
         # ttm = cells[11].text.strip()[0]

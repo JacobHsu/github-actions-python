@@ -28,7 +28,10 @@ def main():
         # Check if the row has cells
         if len(cells) > 0:
             # Extract the data from the cells
-            code = cells[0].text.strip()[1:] 
+            if cells[0].text[:5].isdigit():
+                code = cells[0].text.strip()[1:]
+            else:
+                code = cells[0].text.strip()   
             price = cells[2].text.strip()
             rating = cells[11].text.strip() 
             # Check if the rating is "買入"
