@@ -27,11 +27,14 @@ def main():
         # Check if the row has cells
         if len(cells) > 0:
             # Extract the data from the cells
-            code = cells[0].text.strip()[1:] 
+            if cells[0].text[:5].isdigit():
+                code = cells[0].text.strip()[1:]
+            else:
+                code = cells[0].text.strip() 
             price = cells[2].text.strip()
-            rating = cells[11].text.strip()
+            rating = cells[12].text.strip()
             # Check if the rating is "買入"
-            if rating == "強力買入":
+            if rating == "強力買入" or rating == "買入":
                 stock = re.search(r'\d+', code).group()
                 codes_and_prices.append((code, price)) if stock not in my_remove_list else None
 
@@ -41,7 +44,7 @@ def main():
     # 發送消息至telegram
     table = tabulate.tabulate(codes_and_prices, tablefmt='simple')
     current_time = dt.datetime.now().strftime("%Y-%m-%d")
-    message = f"日期:{current_time} [高股息強力買入]({url}):\n{table}"
+    message = f"日期:{current_time} [高股息買入]({url}):\n{table}"
     helper.send_to_telegram(message)
 
 main()
