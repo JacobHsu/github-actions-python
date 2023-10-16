@@ -19,8 +19,3 @@ def send_to_telegram(message):
 url = 'https://tw.tradingview.com/symbols/TWSE-0050/technicals/'
 message = f"{url}:\n"
 send_to_telegram(message)
-
-
-jihsun = 'http://jsjustweb.jihsun.com.tw/z/ze/zeb/zeb.djhtm'
-message = f"{jihsun}:\n"
-send_to_telegram(message)
