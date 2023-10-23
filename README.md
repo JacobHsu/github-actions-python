@@ -1,5 +1,9 @@
 # github-actions-python
 
+## Resources
+
+[Compile Python 3 Online](https://rextester.com/l/python3_online_compiler)
+
 ## Telegram Bot
 
 search [@BotFather](https://telegram.me/BotFather)  `/newbot`  
