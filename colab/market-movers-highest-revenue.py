@@ -1,4 +1,5 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 
 url = 'https://tw.tradingview.com/markets/stocks-usa/market-movers-highest-revenue/'
